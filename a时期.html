@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>建筑</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+    <style>
+        #table-div {
+            width: 400px;
+            height: 600px;
+            position:fixed;
+            background-color:#D3C6B4;
+            right: 5%;
+            top: 20%;
+            border-style:solid;
+            border-color:#c89b64;
+            border-radius:25px;
+        }
+        p {
+            text-align: center;
+            font-size: 25px;
+            color:#571111;
+        }
+        tr {
+           line-height: 40px;
+        }
+        td {
+            color:#571111;
+            padding-left: 10px;
+            
+        }
+        #title {
+            height:50px;
+            width:auto;
+            text-align: center;
+            color:#A55A4C;
+            font-size: 20px;
+            margin-top: 30px;
+            margin-bottom: 50px;
+        }
+        #lefttitle{
+          width:25%;
+        }
+        #main {
+            width: 70%; 
+            height: 600px;
+        }
+        body{
+          background-color: #F2F0EB;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div id="title">
+        <h1>红色文化基因知识图谱·时期</h1>
+    </div>
+    <div id="main"></div>
+    <div id="ss"></div>
+
+    <div id="table-div">
+        <table>
+            <p>节点属性</p>
+            <tr>
+                <td id="lefttitle">事件名称：</td>
+                <td id="name"></td>
+            </tr>
+            <tr>
+                <td id="lefttitle">发生时间：</td>
+                <td id="time"></td>
+            </tr>
+            <tr>
+                <td>发生地点：</td>
+                <td id="place"></td>
+            </tr>
+            <tr>
+              <td>旧称别称：</td>
+              <td id="oldname"></td>
+            </tr>
+            <tr>
+              <td>组织/人物：</td>
+              <td id="people"></td>
+            </tr>
+            <tr>
+              <td>事件概述：</td>
+              <td id="desc"></td>
+            </tr>
+
+        </table>
+    </div>
+    
+
+
+    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+
+    <script>
+        $(function() {
+
+        })
+
+    </script>
+    <script type="text/javascript">
+        require.config({
+            paths: {
+                echarts: 'http://echarts.baidu.com/build/dist'
+            }
+        });
+        require(["echarts", "echarts/chart/force"], function(ec) {
+            var myChart = ec.init(document.getElementById('main'), 'macarons');
+            var option = {
+                tooltip: {
+                    show:true,
+                    trigger: "item",
+                    backgroundColor: '#c89b64',
+                    formatter: function(node) {
+                        return node.data.name
+                    }
+                        
+                },
+                roam: true,
+                zoom:1,
+                legend : { 
+                    show : false,
+                    left:'center',
+                    top:70,
+                    itemGap:50,
+                    textStyle:{
+                        fontSize:20
+                    },
+                    data : [ 
+                     {
+                        name : '时期',
+                    },
+                    {
+                        name : '文化元素',
+                    },]
+                },
+                series: [{
+                    type: 'force',
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: true,
+                                position: 'top',
+                                distance:'5',
+                            },
+                        }
+                    },
+                    categories: [{
+                        name: '线索'
+                    }, {
+                        name: '时期'
+                    }, {
+                        name: '文化元素'
+                    }, ],
+                    
+
+
+
+                    nodes: [{id:0,category:0,name:'时期',symbolSize:20,ignore:false,itemStyle: {normal: {color:"#1B3779",}},time:'',place:'',oldname:'',people:'',desc:'',},
+                    {id:1,category:1,name:'新民主主义革命时期',symbolSize:15,ignore:false,itemStyle: {normal: {color:"#626b3e",}},time:'1919年-1948年',place:'',oldname:'',people:'',desc:'',},
+                    {id:2,category:1,name:'社会主义革命和建设时期',symbolSize:15,ignore:false,itemStyle: {normal: {color:"#626b3e",}},time:'1949年到1978年',place:'',oldname:'',people:'',desc:'',},
+                    {id:3,category:1,name:'改革开放和社会主义现代化建设时期',symbolSize:15,ignore:false,itemStyle: {normal: {color:"#626b3e",}},time:'1979年-2012年',place:'',oldname:'',people:'',desc:'',},
+                    {id:4,category:1,name:'中国特色社会主义新时代',symbolSize:15,ignore:false,itemStyle: {normal: {color:"#626b3e",}},time:'2013年-',place:'',oldname:'',people:'',desc:'',},
+                    {id:5,category:2,name:'修缮天坛',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1949年',place:'天坛',oldname:'天地坛',people:'政府',desc:'1949年,政府对天坛的文物古迹投入大量的资金,进行保护和维修。进行过多次修缮和大规模绿化,使古老的天坛更加壮丽。',},
+                    {id:6,category:2,name:'天坛被列为“全国重点文物保护单位”',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1961年',place:'天坛',oldname:'天地坛',people:'国务院',desc:'1961年,国务院公布天坛为“全国重点文物保护单位”。',},
+                    {id:7,category:2,name:'天坛被列为“世界文化遗产”',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1998年',place:'天坛',oldname:'天地坛',people:'联合国教科文组织',desc:'1998年,天坛被联合国教科文组织确认为“世界文化遗产”。',},
+                    {id:8,category:2,name:'天坛被列为国家5A级旅游景区',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2007年5月8日',place:'天坛',oldname:'天地坛',people:'国家旅游局',desc:'2007年5月8日,天坛公园经国家旅游局正式批准为国家5A级旅游景区。',},
+                    {id:9,category:2,name:'天坛祈年殿配殿、北宰牲亭、斋宫无梁殿室内展厅暂停开放',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2022年11月23日',place:'天坛',oldname:'天地坛',people:'',desc:'2022年11月23日起,天坛公园祈年殿配殿、北宰牲亭、斋宫无梁殿室内展厅暂停开放,具体开放时间另行通知。',},
+                    {id:10,category:2,name:'正阳桥改建',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'',place:'正阳门',oldname:'丽正门,前门、前门楼子、大前门',people:'',desc:'1919年,正阳桥改建。桥身加宽9米,桥拱改低,此前已撤去内侧石栏杆,两侧又新做水泥罗汉栏板,四角立铁制灯柱。1922年,正阳桥改建。正阳桥被彻底改平,古桥拱仍保留。1950年代中,正阳桥改建。拆去条石改铺沥青。',},
+                    {id:11,category:2,name:'挖出正阳桥基址及桥东南镇水兽',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1992年3月',place:'正阳门',oldname:'丽正门,前门、前门楼子、大前门',people:'',desc:'1992年3月,挖出了正阳桥基址及桥东南镇水兽,后原地掩埋保存。',},
+                    {id:12,category:2,name:'考古发掘正阳桥遗址',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2021年',place:'正阳门',oldname:'丽正门,前门、前门楼子、大前门',people:'',desc:'2021年,考古工作者对正阳桥遗址进行考古发掘,此镇水兽又重见天日。',},
+                    {id:13,category:2,name:'修缮正阳门箭楼',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'',place:'正阳门',oldname:'丽正门,前门、前门楼子、大前门',people:'北京市正阳门管理处',desc:'1976年,唐山地震,正阳门箭楼严重受损,北京市文物主管部门对箭楼进行全面大修。1989年,北京市正阳门管理处集资160万元,将正阳门箭楼修饰一新。',},
+                    {id:14,category:2,name:'正阳门正式开放',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1990年1月21日',place:'正阳门',oldname:'丽正门,前门、前门楼子、大前门',people:'',desc:'1990年1月21日,正阳门正式对游人开放。',},
+                    {id:15,category:2,name:'修缮正阳门',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2022年',place:'正阳门',oldname:'丽正门,前门、前门楼子、大前门',people:'',desc:'2022年,正阳门城楼修缮工程按计划稳步进行。',},
+                    {id:16,category:2,name:'鼓楼改为明耻楼',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1924年',place:'钟鼓楼',oldname:'明耻楼、齐政楼',people:'薛笃弼',desc:'1924年,京兆尹薛笃弼将鼓楼改为明耻楼,并辟为京兆普通图书馆。',},
+                    {id:17,category:2,name:'鼓楼改称齐政楼',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1925年',place:'钟鼓楼',oldname:'明耻楼、齐政楼',people:'',desc:'1925年,鼓楼改称齐政楼,后又改称京兆通俗教育馆、第一民众教育馆等。',},
+                    {id:18,category:2,name:'鼓楼改用',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1949年',place:'钟鼓楼',oldname:'明耻楼、齐政楼',people:'东城区文化馆、东城区教育局、北京市防空指挥部',desc:'1949年后,鼓楼改为东城区文化馆使用,钟楼改为东城区教育局、北京市防空指挥部等单位使用。',},
+                    {id:19,category:2,name:'修缮鼓楼',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'',place:'钟鼓楼',oldname:'明耻楼、齐政楼',people:'',desc:'1984年,钟楼进行修葺。1986年,钟楼再次进行修葺。',},
+                    {id:20,category:2,name:'鼓楼对外开放',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1987年',place:'钟鼓楼',oldname:'明耻楼、齐政楼',people:'',desc:'1987年,鼓楼对外开放。',},
+                    {id:21,category:2,name:'钟楼对外开放',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1989年',place:'钟鼓楼',oldname:'明耻楼、齐政楼',people:'',desc:'1989年,钟楼对外开放。',},
+                    {id:22,category:2,name:'鼓楼封闭改造',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2021年12月13日',place:'钟鼓楼',oldname:'明耻楼、齐政楼',people:'',desc:'2021年12月13日起,北京鼓楼进行封闭改造,暂停对外开放。',},
+                    {id:23,category:2,name:'鼓楼二层恢复对外开放',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2022年1月26日',place:'钟鼓楼',oldname:'明耻楼、齐政楼',people:'',desc:'2022年1月26日,鼓楼二层恢复对外开放。',},
+                    {id:24,category:2,name:'鼓楼、钟楼启动电力维修工程',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2022年11月19日',place:'钟鼓楼',oldname:'明耻楼、齐政楼',people:'',desc:'2022年11月19日,鼓楼、钟楼启动电力维修工程,暂停对外开放。',},
+                    {id:25,category:2,name:'鼓楼、钟楼恢复开放',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2022年12月26日',place:'钟鼓楼',oldname:'明耻楼、齐政楼',people:'北京市钟鼓楼文物保管所',desc:'2022年12月22日,北京市钟鼓楼文物保管所宣布北京鼓楼、钟楼将于2022年12月26日恢复开放。',},
+                    {id:26,category:2,name:'改造万宁桥',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'',place:'万宁桥',oldname:'后门桥、地安桥',people:'北京市政府、文物局',desc:'1924年,降低桥面,横铺桥面石板改为斜铺,两侧辟人行道。1953年,将万宁桥以下一段玉河改为暗沟。1999年6月,大规模整修万宁桥及其周围环境。2000年12月,工程告竣,经批准,恢复“万宁”桥名。',},
+                    {id:27,category:2,name:'修缮万宁桥',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1999年',place:'万宁桥',oldname:'后门桥、地安桥',people:'刘澜涛、彭真、习仲勋、陆定一、杨尚昆、萧华',desc:'1999年,修复万宁桥、恢复河道水面工程时,清理出六尊镇水兽,桥东两岸各一尊,桥西四尊。',},
+                    {id:28,category:2,name:'景山对外开放',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1928年',place:'景山',oldname:'煤山、镇山、万岁山、玄武山',people:'',desc:'1928年,景山辟为公园,对外开放,但园内多处建筑呈现残破景象。',},
+                    {id:29,category:2,name:'景山改用',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1950年至1955年',place:'景山',oldname:'煤山、镇山、万岁山、玄武山',people:'',desc:'1950年至1955年,景山被军队短暂使用。',},
+                    {id:30,category:2,name:'景山改建为北京市少年宫',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1955年',place:'景山',oldname:'煤山、镇山、万岁山、玄武山',people:'',desc:'1954年10月29日,中国新民主主义青年团中央书记处致函中共中央刘澜涛并彭真、习仲勋、陆定一、杨尚昆、萧华,请求将北京市景山公园改建为北京市少年儿童文化公园。同年12月12日,彭真致函刘澜涛并胡耀邦,同意将景山辟为少年宫。1955年6月1日,北京市少年宫正式投人使用。',},
+                    {id:31,category:2,name:'景山被列为全国重点文物保护单位',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2001年',place:'景山',oldname:'煤山、镇山、万岁山、玄武山',people:'',desc:'2001年,景山被列为全国重点文物保护单位。',},
+                    {id:32,category:2,name:'景山公园管理处成立',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2003年',place:'景山',oldname:'煤山、镇山、万岁山、玄武山',people:'',desc:'2003年,北海景山公园管理处一分为二,成立独立的景山公园管理处,归属北京市公园管理中心。',},
+                    {id:33,category:2,name:'永定门城楼、箭楼独立',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1950年底至1951年初',place:'永定门',oldname:'正阳外门、永安门、永昌门',people:'',desc:'1950年底至1951年初,永定门拆除瓮城,城楼、箭楼成为两座孤立的建筑。',},
+                    {id:34,category:2,name:'拆除永定门城楼、箭楼',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1957年',place:'永定门',oldname:'正阳外门、永安门、永昌门',people:'',desc:'1957年,永定门城楼、箭楼被相继拆除。',},
+                    {id:35,category:2,name:'永定门城楼重建完成',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2005年',place:'永定门',oldname:'正阳外门、永安门、永昌门',people:'',desc:'2005年,永定门城楼重建完成。永定门城楼的重建严格依据考古与历史研究成果,在原址按照原有形制,采取传统工艺做法完成了对城楼的恢复。重建后的永定门城楼和瓮城地面标识再次标明北京中轴线南端点的位置。',},
+                    {id:36,category:2,name:'故宫成立并对外开放',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1925年',place:'故宫',oldname:'紫禁城',people:'',desc:'1925年10月10日,宣布故宫博物院正式成立,对外开放。1925年以后紫禁城才被称为“故宫”。',},
+                    {id:37,category:2,name:'故宫采取采取文物避敌南迁之策',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1933年',place:'故宫',oldname:'紫禁城',people:'',desc:'1933年,故宫博物院为保护其文物安全,不至遭战火毁灭或被日本帝国主义掠夺,决定采取文物避敌南迁之策,并在南京建立文物库房,成立故宫博物院南京分院。从1933年2月至5月,先后检选出文物、图书、档案13427箱又64包,分五批先运抵上海,后又运至南京。',},
+                    {id:38,category:2,name:'修缮故宫',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1949年',place:'故宫',oldname:'紫禁城',people:'',desc:'1949年,对故宫建筑进行了大规模的修缮,同时整理出大量的文物。',},
+                    {id:39,category:2,name:'故宫被列为全国重点文物保护单位',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1961年',place:'故宫',oldname:'紫禁城',people:'国务院',desc:'1961年,国务院颁布故宫为全国重点文物保护单位。故宫博物院现存文物1862690件/套（截至2019年8月）。',},
+                    {id:40,category:2,name:'故宫被列为“世界文化遗产”',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1987年',place:'故宫',oldname:'紫禁城',people:'联合国教科文组织',desc:'1987年,故宫被联合国教科文组织列为“世界文化遗产”,辟为“故宫博物院”。',},
+                    {id:41,category:2,name:'故宫寿康宫正式展出',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2013年8月15日',place:'故宫',oldname:'紫禁城',people:'',desc:'2013年8月15日,寿康宫在进行原状陈列后,也正式展出。',},
+                    {id:42,category:2,name:'故宫吉祥物首度对外亮相',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2014年11月23日',place:'故宫',oldname:'紫禁城',people:'',desc:'2014年11月23日,北京故宫吉祥物首度对外亮相,该吉祥物源自中国传统的吉祥龙凤形象,分别为龙“壮壮”和凤“美美”。',},
+                    {id:43,category:2,name:'故宫开放面积扩大',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2015年10月11日',place:'故宫',oldname:'紫禁城',people:'',desc:'2015年10月11日,故宫博物院正式对观众开放慈宁宫区域、午门雁翅楼区域、东华门等新的区域,使故宫的开放面积由52%增加至65%。',},
+                    {id:44,category:2,name:'修缮故宫养心殿',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2018年9月3日',place:'故宫',oldname:'紫禁城',people:'',desc:'2018年9月3日,故宫养心殿正式进入古建筑研究性保护修缮工作的实施阶段。',},
+                    {id:45,category:2,name:'社稷坛拜殿停灵',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1925年',place:'社稷坛',oldname:'太社坛、太稷坛',people:'孙中山',desc:'1925年,孙中山逝世后,在社稷坛拜殿停灵。',},
+                    {id:46,category:2,name:'社稷坛被命名为“中山公园”',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1928年',place:'社稷坛',oldname:'太社坛、太稷坛',people:'孙中山',desc:'1928年,社稷坛被命名为“中山公园”,拜殿改称“中山堂”。',},
+                    {id:47,category:2,name:'修缮社稷坛',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'20世纪60年代末',place:'社稷坛',oldname:'太社坛、太稷坛',people:'',desc:'20世纪60年代末,社稷坛四周壝垣及壝垣内地面进行修缮。',},
+                    {id:48,category:2,name:'社稷坛被列为第三批全国重点文物保护单位',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1988年',place:'社稷坛',oldname:'太社坛、太稷坛',people:'国务院',desc:'1988年,社稷坛被国务院列为第三批全国重点文物保护单位。',},
+                    {id:49,category:2,name:'太庙对外开放',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1924年',place:'太庙',oldname:'世房、重屋、北京市劳动人民文化宫',people:'',desc:'1924年,太庙由清室移交北洋政府,改称和平公园并对外开放,后关闭。',},
+                    {id:50,category:2,name:'太庙改归民国政府内务部',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1928年',place:'太庙',oldname:'世房、重屋、北京市劳动人民文化宫',people:'',desc:'1928年,太庙改归民国政府内务部。',},
+                    {id:51,category:2,name:'太庙由故宫接管',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1931年',place:'太庙',oldname:'世房、重屋、北京市劳动人民文化宫',people:'',desc:'1931年,太庙由故宫博物院接管。',},
+                    {id:52,category:2,name:'太庙改名为“北京市劳动人民文化宫”并正式对外开放',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1950年5月1日',place:'太庙',oldname:'世房、重屋、北京市劳动人民文化宫',people:'',desc:'1950年5月1日,太庙改名为“北京市劳动人民文化宫”并正式对外开放。',},
+                    {id:53,category:2,name:'修缮太庙',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2006年8月4日',place:'太庙',oldname:'世房、重屋、北京市劳动人民文化宫',people:'',desc:'2006年8月4日,太庙进行修缮,暂停开放。',},
+                    {id:54,category:2,name:'太庙恢复开放',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2007年6月9日',place:'太庙',oldname:'世房、重屋、北京市劳动人民文化宫',people:'',desc:'2007年6月9日,太庙修缮竣工,恢复向社会开放。',},
+                    {id:55,category:2,name:'太庙完成腾退工作',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2018年',place:'太庙',oldname:'世房、重屋、北京市劳动人民文化宫',people:'',desc:'2018年,太庙完成全部73户居民住户的腾退工作。',},
+                    {id:56,category:2,name:'太庙三殿暂停开放',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2023年1月9日',place:'太庙',oldname:'世房、重屋、北京市劳动人民文化宫',people:'',desc:'2023年1月9日,太庙三殿暂停开放,恢复开放日期另行通知。',},
+                    {id:57,category:2,name:'修缮天安门',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'',place:'天安门',oldname:'承天门',people:'北平市政府、天安门地区管理委员会、政府、国家文物局',desc:'1949年、1952年、1956年、1957年、1966年、1980年、1984年、1991年、1992年、1994年、2009年、2012年、2013年、2018年分别进行过修缮。',},
+                    {id:58,category:2,name:'重建天安门',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1969年12月15日至1970年4月7日',place:'天安门',oldname:'承天门',people:'国务院、北京市委',desc:'1969年12月15日至1970年4月7日,旧城楼拆除,按原规模和建筑形制重建天安门城楼。',},
+                    {id:59,category:2,name:'天安门城楼开放',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1988年',place:'天安门',oldname:'承天门',people:'',desc:'1988年,天安门城楼开始对公众开放。',},
+                    {id:60,category:2,name:'天安门被列为北京市第一批不可移动革命文物',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2021年3月',place:'天安门',oldname:'承天门',people:'北京市文物局',desc:'2021年3月,天安门被北京市文物局确定为北京市第一批不可移动革命文物。',},
+                    {id:61,category:2,name:'建成人民大会堂',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1959年9月',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'',desc:'1959年9月24日,人民大会堂建成。',},
+                    {id:62,category:2,name:'人民大会堂被确认为十大献礼工程之一',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1959年',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'',desc:'1959年,人民大会堂被确认为十周年大庆前夕竣工的十大献礼工程之一。',},
+                    {id:63,category:2,name:'建立人民英雄纪念碑',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1949年9月30日',place:'人民英雄纪念碑',oldname:'',people:'',desc:'1949年9月30日,中国人民政治协商会议第一届全体会议决定,为了纪念在人民解放战争和人民革命中牺牲的人民英雄,在首都北京建立人民英雄纪念碑。1949年9月30日奠基,1952年8月1日开工,1958年4月22日建成 ,1958年5月1日揭幕。',},
+                    {id:64,category:2,name:'修缮人民英雄纪念碑',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'',place:'人民英雄纪念碑',oldname:'',people:'',desc:'1980年国庆节前,拆除了色玻璃钢字,更换损坏断裂的石料,恢复原有的金箔字。1999年6月1日,在天安门广场进行大规模改造时同时进行清洗维护。2006年,修复纪念碑存在的漏水、有裂缝等问题。',},
+                    {id:65,category:2,name:'向人民英雄纪念碑敬献花篮',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'',place:'人民英雄纪念碑',oldname:'',people:'胡锦涛、吴邦国、温家宝、贾庆林、李长春、习近平、李克强、贺国强等',desc:'在2012年、2013年、2014年等,重要领导人向人民英雄纪念碑敬献花篮。',},
+                    {id:66,category:2,name:'毛主席纪念堂奠基仪式',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1976年11月24日',place:'毛主席纪念堂',oldname:'',people:'',desc:'1976年11月24日,按照中国共产党中央委员会的决议,毛主席纪念堂奠基仪式在天安门广场举行。',},
+                    {id:67,category:2,name:'毛主席纪念堂开辟革命业绩纪念室',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1982年12月1日',place:'毛主席纪念堂',oldname:'',people:'毛泽东、周恩来、刘少奇、朱德等',desc:'1982年12月1日,毛主席纪念堂开辟了毛泽东、周恩来、刘少奇、朱德的革命业绩纪念室。',},
+                    {id:68,category:2,name:'中国历史博物馆和中国革命博物馆合并为中国国家博物馆',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2003年2月28日',place:'中国国家博物馆',oldname:'国立北京历史博物馆、中国历史博物馆',people:'',desc:'2003年2月28日,中国历史博物馆和中国革命博物馆合并组建成为中国国家博物馆。',},
+                    {id:69,category:2,name:'中国国家博物馆闭馆扩建',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2007年1月31日',place:'中国国家博物馆',oldname:'国立北京历史博物馆、中国历史博物馆',people:'',desc:'2007年1月31日,中国国家博物馆闭馆开始扩建,设计方案于同年春季公布。',},
+                    {id:70,category:2,name:'中国国家博物馆改扩建工程正式动工',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2007年3月1日',place:'中国国家博物馆',oldname:'国立北京历史博物馆、中国历史博物馆',people:'',desc:'2007年3月1日,中国国家博物馆改扩建工程正式动工。',},
+                    {id:71,category:2,name:'中国国家博物馆改扩建工程举行动工仪式',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2007年3月17日',place:'中国国家博物馆',oldname:'国立北京历史博物馆、中国历史博物馆',people:'',desc:'2007年3月17日,中国国家博物馆改扩建工程举行动工仪式,老建筑拆除开始。',},
+                    {id:72,category:2,name:'中国国家博物馆初步设计和概算经国家发展和改革委员会批准',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2007年7月23日',place:'中国国家博物馆',oldname:'国立北京历史博物馆、中国历史博物馆',people:'国家发展和改革委员会',desc:'2007年7月23日,中国国家博物馆初步设计和概算经国家发展和改革委员会批准。',},
+                    {id:73,category:2,name:'中国国家博物馆老馆结构加固工程进场施工',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2007年7月26日',place:'中国国家博物馆',oldname:'国立北京历史博物馆、中国历史博物馆',people:'',desc:'2007年7月26日,中国国家博物馆老馆结构加固工程进场施工。',},
+                    {id:74,category:2,name:'中国国家博物馆新馆基坑开挖',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2007年8月19日',place:'中国国家博物馆',oldname:'国立北京历史博物馆、中国历史博物馆',people:'',desc:'2007年8月19日,中国国家博物馆新馆基坑开挖。',},
+                    {id:75,category:2,name:'中国国家博物馆工程总承包城建集团进场施工',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2008年3月18日',place:'中国国家博物馆',oldname:'国立北京历史博物馆、中国历史博物馆',people:'',desc:'2008年3月18日,中国国家博物馆工程总承包城建集团进场施工。',},
+                    {id:76,category:2,name:'中国国家博物馆完成老馆外立面亮相',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2008年7月底',place:'中国国家博物馆',oldname:'国立北京历史博物馆、中国历史博物馆',people:'',desc:'2008年7月底,中国国家博物馆在2008年北京奥运会之前完成了老馆外立面亮相。',},
+                    {id:77,category:2,name:'中国国家博物馆新馆结构封顶',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2008年12月18日',place:'中国国家博物馆',oldname:'国立北京历史博物馆、中国历史博物馆',people:'',desc:'2008年12月18日,中国国家博物馆新馆结构封顶。',},
+                    {id:78,category:2,name:'中国国家博物馆完成老馆办公区装修工作',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2009年12月',place:'中国国家博物馆',oldname:'国立北京历史博物馆、中国历史博物馆',people:'',desc:'2009年12月,中国国家博物馆完成了老馆办公区装修工作,全馆职工2010年2月顺利回迁,确保了国家博物馆各项业务及对外文化交流工作的正常开展。',},
+                    {id:79,category:2,name:'中国国家博物馆扩建部分外檐亮相',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2010年6月中旬',place:'中国国家博物馆',oldname:'国立北京历史博物馆、中国历史博物馆',people:'',desc:'2010年6月中旬,完成中国国家博物馆扩建部分外檐亮相。',},
+                    {id:80,category:2,name:'中国国家博物馆改扩建工程竣工',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2010年12月1日',place:'中国国家博物馆',oldname:'国立北京历史博物馆、中国历史博物馆',people:'',desc:'2010年12月1日,中国国家博物馆改扩建工程竣工。',},
+                    {id:81,category:2,name:'中国国家博物馆改扩建工程竣工典礼举行',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2011年3月1日',place:'中国国家博物馆',oldname:'国立北京历史博物馆、中国历史博物馆',people:'',desc:'2011年3月1日,中国国家博物馆改扩建工程竣工典礼在新建成的西入口大厅举行。',},
+                    {id:82,category:2,name:'中国国家博物馆新馆开放',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2011年3月1日',place:'中国国家博物馆',oldname:'国立北京历史博物馆、中国历史博物馆',people:'',desc:'2011年3月1日,中国国家博物馆新馆开放,此后试运营一年举办50余个展览,接待国内外观众410多万人次。',},
+                    {id:83,category:2,name:'中国国家博物馆建馆100周年纪念大会举行',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2012年7月9日',place:'中国国家博物馆',oldname:'国立北京历史博物馆、中国历史博物馆',people:'',desc:'2012年7月9日,中国国家博物馆建馆100周年纪念大会在国博剧场举行。',},
+                    {id:84,category:2,name:'中国国家博物馆新官网上线',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2019年4月8日',place:'中国国家博物馆',oldname:'国立北京历史博物馆、中国历史博物馆',people:'',desc:'2019年4月8日,中国国家博物馆新官网上线。',},
+                    {id:85,category:2,name:'天安门观礼台对外开放',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2012年1月1日',place:'天安门观礼台',oldname:'',people:'',desc:'2012年1月1日,天安门观礼台正式对普通民众开放。',},
+                    {id:86,category:2,name:'修缮先农坛',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'',place:'先农坛',oldname:'山川坛',people:'政府',desc:'1930年,先农坛外坛墙全部被拆除,坛西成为广场；庆成宫之南辟为先农坛体育场。21世纪初,大规模综合修缮先农坛,并设立北京市古代建筑博物馆。',},
+                    {id:87,category:2,name:'单位迁入先农坛',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1949年7月',place:'先农坛',oldname:'山川坛',people:'',desc:'1949年7月,育才学校等单位陆续迁入先农坛。',},
+                    {id:88,category:2,name:'单位搬出先农坛',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1997年',place:'先农坛',oldname:'山川坛',people:'',desc:'1997年,育才学校图书馆从俱服殿搬出先农坛。',},
+                    {id:89,category:2,name:'建造中华民族园',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1992年',place:'中华民族园',oldname:'',people:'王平',desc:'1992年,中华民族园由总设计师王平院长主持开始建设中华民族园。',},
+                    {id:90,category:2,name:'中华民族园北园建成开放',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1994年6月18日',place:'中华民族园',oldname:'',people:'',desc:'1994年6月18日,中华民族园北园建成开放。',},
+                    {id:91,category:2,name:'中华民族园南园建成开放',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2001年9月29日',place:'中华民族园',oldname:'',people:'',desc:'2001年9月29日,中华民族园南园建成开放。',},
+                    {id:92,category:2,name:'周恩来的“烤鸭外交”',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1971年7月10日',place:'',oldname:'',people:'周恩来、基辛格',desc:'1971年7月10日,基辛格来到北京,与周恩来总理在人民大会堂福建厅举行秘密会谈。到了中午,会谈仍没有取得一致意见。周恩来建议先共进午餐。周恩来向基辛格介绍烤鸭的吃法。这天下午和第二天的会谈,取得了积极的进展。',},
+                    {id:93,category:2,name:'老舍茶馆',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1988年',place:'',oldname:'',people:'尹盛喜',desc:'1988年,中国改革开放的大门刚向世界打开不久,但西方文化已开始对中国的传统文化产生了强大冲击。尹盛喜决定开个京味茶馆,将中国的传统戏曲、北京小吃、中国茶文化都汇集到一起,宣传和展示中国传统文化的魅力。',},
+                    {id:94,category:2,name:'北京第一家个体户饭馆开张营业',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1980年8月',place:'',oldname:'',people:'',desc:'1980年8月,北京第一家个体户饭馆开张营业。在第一家个体户饭馆的带动下,许多待业在家的年轻人纷纷开始进入餐饮业。随着国家政策的进一步放开,众多“老字号”企业陆续恢复原来的字号。',},
+                    {id:95,category:2,name:'商务部认定第一批“中华老字号”',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2006年11月7日',place:'',oldname:'',people:'商务部',desc:'2006年11月7日,商务部认定“北京吴裕泰茶业股份有限公司（注册商标：吴裕泰）”等430个企业（品牌）为“中华老字号”。其中,北京市第一批“中华老字号”名单有67个。',},
+                    {id:96,category:2,name:'正阳门雨燕保护',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2018年起',place:'正阳门',oldname:'丽正门,前门、前门楼子、大前门',people:'',desc:'为研究、保护雨燕,正阳门从2018年开始陆续在雨燕栖息的城楼顶层吊装了7台高清摄像机,对雨燕巢穴进行24小时不间断观测,至今已经取得了5年的数据。',},
+                    {id:97,category:2,name:'故宫全市群众性清洁运动',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1950年3月24日至6月30日',place:'故宫',oldname:'紫禁城',people:'',desc:'1950年3月24日至6月30日,故宫进行了全市群众性清洁运动。此次运动,共计91天,清运垃圾201,638吨,仅从故宫内就运走了约30万立方米的垃圾。积存多年的垃圾基本清除,古都北平焕然一新。',},
+                    {id:98,category:2,name:'整治龙须沟',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1950年5月16日',place:'天坛',oldname:'天地坛',people:'北京市卫生工程局',desc:'1950年2月,市卫生工程局成立龙须沟工程处,于5月16日至7月31日对龙须沟进行第一期专项整治；于10月12日至11月22日进行第二期工程。',},
+                    {id:99,category:2,name:'护城河河道治理',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1950年',place:'',oldname:'',people:'北京市卫生工程局',desc:'1950年,由市卫生工程局组织,先后疏浚了北护城河与东护城河；拆除了古老的松林闸,另在其上游建成手摇启闭机式的新松林闸；闸下游150米处建三级跌水一座,总落差2.52米。疏浚后流量可达8立方米每秒。',},
+                    {id:100,category:2,name:'护城河清淤工作',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2006年2月20日',place:'',oldname:'',people:'北京河湖管理处',desc:'2006年2月20日,在北京环城护城河永定门段,北京河湖管理处的工作人员对护城河内的冰冻及淤泥进行了大规模的清理,确保护城河春季河水的水质。',},
+                    {id:101,category:2,name:'古树名木保护规划',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2019年',place:'',oldname:'',people:'北京园林院',desc:'2019年,北京园林院参与编制《北京市古树名木保护规划(2021——2035)》,对全市古树名木管理工作的中长期发展思路、保护目标、保护内容、保护制度、科技支撑和文化推广提出了统筹安排和科学部署。',},
+                    {id:102,category:2,name:'天坛古树名木保护规划',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2022年',place:'',oldname:'',people:'北京园林院',desc:'2022年,北京园林院根据天坛公园的古树现状及未来保护发展要求,编制了《天坛公园古树名木及后备古树资源保护规划(2022——2035)》。',},
+                    {id:103,category:2,name:'和平解放西藏',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1951年的5月23日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'中国共产党',desc:'以阿沛·阿旺晋美为首的西藏地方政府代表团,在1951年4月下旬抵京谈判,并于1951年的5月23日,中华人民共和国中央人民政府的全权代表和西藏地方政府的全权代表在北京签订《十七条协议》,宣告了西藏的和平解放。 ',},
+                    {id:104,category:2,name:'第二届全国人民代表大会第三次会议',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1962年3月27日至4月16日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'全国人大',desc:'1962年3月27日至4月16日,第二届全国人民代表大会第三次会议在人民大会堂召开。会议听取了周恩来总理作《政府工作报告》。',},
+                    {id:105,category:2,name:'中共中央纪律检查委员会第一次全体会议',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1979年1月4日至22日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'全国人大',desc:'1979年1月4日至22日,中共中央纪律检查委员会第一次全体会议在人民大会堂召开。会议讨论通过了《中共中央纪律检查委员会关于工作任务、职权范围、机构设置的规定》。',},
+                    {id:106,category:2,name:'五届全国人大二次会议',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1979年6月18日至7月1日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'全国人大',desc:'1979年6月18日至7月1日,五届全国人大二次会议在人民大会堂召开。会议通过了《地方各级人民代表大会和地方各级人民政府组织法》和《全国人民代表大会和地方各级人民代表大会选举法》。',},
+                    {id:107,category:2,name:'中国共产党第十二次全国代表大会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1982年9月1日至11日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'中国共产党',desc:'1982年9月1日至11日,中国共产党第十二次全国代表大会在人民大会堂召开。邓小平主持大会开幕式,并致开幕词。',},
+                    {id:108,category:2,name:'邓小平会见撒切尔夫人',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1982年9月24日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'邓小平、撒切尔夫人',desc:'1982年9月24日,邓小平在人民大会堂会见撒切尔夫人。阐述中国政府对香港问题的基本立场。指出,主权问题不是一个可以讨论的问题。',},
+                    {id:109,category:2,name:'中英签署《中华人民共和国政府和大不列颠及北爱尔兰联合王国政府关于香港问题的联合声明》',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1984年12月18日至19日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'中国共产党',desc:'1984年12月18日至19日,中英两国政府在北京正式签署《中华人民共和国政府和大不列颠及北爱尔兰联合王国政府关于香港问题的联合声明》,中国政府声明决定于1997年7月1日对香港恢复行使主权。',},
+                    {id:110,category:2,name:'中葡签署《中华人民共和国政府和葡萄牙共和国政府关于澳门问题的联合声明》',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1987年4月13日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'中国共产党',desc:'1987年4月13日,中葡两国政府在北京正式签署《中华人民共和国政府和葡萄牙共和国政府关于澳门问题的联合声明》,确认中国政府于1999年12月20日对澳门恢复行使主权。',},
+                    {id:111,category:2,name:'邓小平会见戈尔巴乔夫',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1989年5月16日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'邓小平、戈尔巴乔夫',desc:'1989年5月16日,邓小平会见来访的苏联最高苏维埃主席团主席、苏共中央总书记戈尔巴乔夫。中苏关系实现正常化。',},
+                    {id:112,category:2,name:'七届全国人大三次会议',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1990年3月20日至4月4日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'全国人大',desc:'1990年3月20日至4月4日,七届全国人大三次会议在人民大会堂召开。',},
+                    {id:113,category:2,name:'中共十八届六中全会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2016年10月24日至27日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'中国共产党、习近平',desc:'2016年10月24日至27日,中共十八届六中全会在人民大会堂召开。全会通过《关于新形势下党内政治生活的若干准则》和《中国共产党党内监督条例》。',},
+                    {id:114,category:2,name:'中央政协工作会议暨庆祝中国人民政治协商会议成立70周年大会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2019年9月20日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'政协、习近平',desc:'2019年9月20日,中央政协工作会议暨庆祝中国人民政治协商会议成立70周年大会在人民大会堂召开。习近平出席大会并发表讲话。',},
+                    {id:115,category:2,name:'中共十九届四中全会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2019年10月28日至31日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'中国共产党',desc:'2019年10月28日至31日,中共十九届四中全会在人民大会堂召开。全会通过《关于坚持和完善中国特色社会主义制度、推进国家治理体系和治理能力现代化若干重大问题的决定》。',},
+                    {id:116,category:2,name:'中国共产党第二十次全国代表大会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2022年10月16日至22日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'中国共产党',desc:'2022年10月16日至22日,中国共产党第二十次全国代表大会在人民大会堂召开。这是在全党全国各族人民迈上全面建设社会主义现代化国家新征程、向第二个百年奋斗目标进军的关键时刻召开的一次十分重要的大会。',},
+                    {id:117,category:2,name:'七千人大会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1963年1月11日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'毛泽东',desc:'1963年1月11日,“七千人大会”在人民大会堂召开。毛泽东在会上作了重要讲话。',},
+                    {id:118,category:2,name:'第三届全国人民代表大会第一次会议/中国人民政治协商会议第四届第一次会议',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1964年12月20日至1965年1月4日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'全国人大、周恩来',desc:'1964年12月20日至1965年1月4日,第三届全国人民代表大会第一次会议/中国人民政治协商会议第四届第一次会议在人民大会堂召开。',},
+                    {id:119,category:2,name:'中共十一大',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1977年8月12日至18日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'中国共产党、邓小平、华国锋、叶剑英',desc:'1977年8月12日至18日,中共十一大在人民大会堂召开。华国锋主持大会并代表中共中央作政治报告,叶剑英作《关于修改党的章程的报告》,邓小平致闭幕词。',},
+                    {id:120,category:2,name:'中国共产党第十四次全国代表大会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1992年10月12日至18日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'中国共产党、邓小平、江泽民',desc:'1992年10月12日至18日,中国共产党第十四次全国代表大会在人民大会堂召开。江泽民代表第十三届中央委员会作了报告。',},
+                    {id:121,category:2,name:'中共十八届三中全会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2013年11月12日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'中国共产党',desc:'2013年11月12日,中共十八届三中全会在人民大会堂召开。会议通过《关于全面深化改革若干重大问题的决定》。',},
+                    {id:122,category:2,name:'中共十八届五中全会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2015年10月29日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'中国共产党、习近平',desc:'2015年10月29日,中共十八届五中全会在人民大会堂召开。会议通过《关于制定国民经济和社会发展第十三个五年规划的建议》。',},
+                    {id:123,category:2,name:'中共十九届五中全会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2020年10月26日至29日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'中国共产党、习近平',desc:'2020年10月26日至29日,中共十九届五中全会在人民大会堂召开。全会通过《关于制定国民经济和社会发展第十四个五年规划和二〇三五年远景目标的建议》。',},
+                    {id:124,category:2,name:'中国共产党第十五次全国代表大会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1997年9月12日至18日',place:'',oldname:'',people:'中国共产党、邓小平',desc:'1997年9月12日至18日,中国共产党第十五次全国代表大会在人民大会堂召开。大会通过《中国共产党章程修正案》,把邓小平理论同马克思列宁主义、毛泽东思想一道确立为党的指导思想并载入党章。',},
+                    {id:125,category:2,name:'中国共产党第十六次全国代表大会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2002年11月8日至14日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'中国共产党、江泽民',desc:'2002年11月8日至14日,中国共产党第十六次全国代表大会在人民大会堂召开。江泽民代表第十五届中央委员会作《全面建设小康社会,开创中国特色社会主义事业新局面》的报告。',},
+                    {id:126,category:2,name:'纪念邓小平诞辰100周年大会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2004年8月22日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'中国共产党、邓小平、胡锦涛',desc:'2004年8月22日,纪念邓小平诞辰100周年大会在人民大会堂举行。胡锦涛发表讲话,高度评价邓小平为民族独立、人民解放和国家富强、人民幸福建立的不朽功勋。',},
+                    {id:127,category:2,name:'庆祝中国人民解放军建军80周年暨全军英雄模范代表大会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2007年8月1日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'中国共产党、胡锦涛',desc:'胡锦涛在大会上讲话指出,在80年的顽强奋斗中,人民解放军培育和形成了优良革命传统,集中起来就是听党指挥、服务人民、英勇善战。',},
+                    {id:128,category:2,name:'庆祝中国共产党成立90周年大会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2011年7月1日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'中国共产党、胡锦涛',desc:'2011年7月1日,庆祝中国共产党成立90周年大会在人民大会堂召开。胡锦涛在会上发表了讲话。',},
+                    {id:129,category:2,name:'中国共产党第十八次全国代表大会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2012年11月8日至14日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'中国共产党',desc:'2012年11月8日至14日,中国共产党第十八次全国代表大会在人民大会堂召开。大会通过的报告《坚定不移沿着中国特色社会主义道路前进,为全面建成小康社会而奋斗》。',},
+                    {id:130,category:2,name:'中国共产党第十九次全国代表大会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2017年10月18日至24日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'中国共产党、习近平',desc:'2017年10月18日至24日,中国共产党第十九次全国代表大会在人民大会堂召开。大会通过的报告《决胜全面建成小康社会,夺取新时代中国特色社会主义伟大胜利》。',},
+                    {id:131,category:2,name:'政协第一届全体会议',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1949年9月21日至30日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'政协',desc:'1949年9月21日至30日,政协第一届全体会议在人民大会堂召开。会议通过了具有临时宪法性质的《中国人民政治协商会议共同纲领》；制定了《中国人民政治协商会议组织法》、《中华人民共和国中央人民政府组织法》。',},
+                    {id:132,category:2,name:'第一届全国人民代表大会第一次会议',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1954年9月20日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'全国人大',desc:'1954年9月20日,第一届全国人民代表大会第一次会议在人民大会堂召开。会议庄严地通过中华人民共和国宪法。',},
+                    {id:133,category:2,name:'第四届全国人民代表大会第一次会议',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1975年1月13日至17日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'全国人大',desc:'1975年1月13日至17日,第四届全国人民代表大会第一次会议在人民大会堂召开。会议的主要议程是修改宪法、听取政府工作报告、选举和任命国家领导人员。',},
+                    {id:134,category:2,name:'第五届全国人民代表大会第五次会议',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1982年12月4日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'全国人大',desc:'1982年12月4日,第五届全国人民代表大会第五次会议在人民大会堂召开。会议通过了《中华人民共和国宪法》,它成为中国在历史新时期治国安邦的总章程。',},
+                    {id:135,category:2,name:'第六届全国人大二次会议',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1984年10月1日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'全国人大',desc:'1984年10月1日,第六届全国人大二次会议在人民大会堂召开。会议通过《民族区域自治法》和《兵役法》,并决定建立海南行政区。《民族区域自治法》对民族自治地方的政治、经济、文化等各方面的权利和义务作了系统规定。',},
+                    {id:136,category:2,name:'第七届全国人民代表大会第三次会议',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1990年4月4日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'全国人大',desc:'1990年4月4日,第七届全国人民代表大会第三次会议在人民大会堂召开。会议以2660票赞成通过了《中华人民共和国香港特别行政区基本法》,为香港回归后的稳定繁荣提供了可靠的法律保障。',},
+                    {id:137,category:2,name:'第八届全国人大三次会议',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1995年3月5日至18日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'全国人大',desc:'1995年3月5日至18日,第八届全国人大三次会议在人民大会堂召开。会议通过《中华人民共和国教育法》。',},
+                    {id:138,category:2,name:'中共十八届四中全会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2014年10月13日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'中国共产党',desc:'2014年10月13日,中共十八届四中全会在人民大会堂召开。会议通过《关于全面推进依法治国若干重大问题的决定》。',},
+                    {id:139,category:2,name:'十二届全国人大五次会议',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2017年3月15日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'全国人大',desc:'2017年3月15日,十二届全国人大五次会议在人民大会堂召开。会议通过《中华人民共和国民法总则》。',},
+                    {id:140,category:2,name:'中共十九届三中全会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2018年2月26日至28日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'中国共产党',desc:'2018年2月26日至28日,中共十九届三中全会在人民大会堂召开。全会通过《关于深化党和国家机构改革的决定》和《深化党和国家机构改革方案》。',},
+                    {id:141,category:2,name:'十三届全国人大常委会第三次会议',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2018年6月22日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'全国人大',desc:'2018年6月22日,十三届全国人大常委会第三次会议在人民大会堂召开。会议通过关于宪法和法律委员会职责问题的决定,进一步从法律规定上明确了这些职责。',},
+                    {id:142,category:2,name:'中国科学院成立',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1949年11月1日',place:'',oldname:'',people:'',desc:'1949年11月,在原中央研究院和北平研究院的基础上成立了中国科学院,作为新中国的主要政府研究机构,并在随后的几年里陆续成立了中国科协、中国气象局、国家地质部等科学技术协调与研究机构。',},
+                    {id:143,category:2,name:'“四个现代化“',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1964年',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'中国共产党、周恩来',desc:'1964年,周恩来总理在政府工作报告上首次提出要实现工业、农业、国防和科学技术现代化,简称“四个现代化”。',},
+                    {id:144,category:2,name:'全国科学大会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1978年3月18至31日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'中国共产党、邓小平',desc:'1978年3月18至31日,时任副总理的邓小平在全国科学大会开幕式上作了极为重要的讲话。他提出,要实现农业、工业、国防和科学技术现代化,关键在于实现科学技术现代化,并强调科学技术是第一生产力。',},
+                    {id:145,category:2,name:'全国科学技术大会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2006年1月9日至11日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'中国共产党',desc:'2006年1月9日至11日,全国科学技术大会在人民大会堂举行。这是党中央、国务院在新世纪召开的第一次全国科技大会,也是继1956年知识分子会议、1978年全国科学大会、1995年全国科技大会之后,我国科技发展史上的又一个里程碑。',},
+                    {id:146,category:2,name:'全国科技创新大会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2012年7月6日至2012年7月7日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'中国共产党、胡锦涛',desc:'2012年7月6日至2012年7月7日,全国科技创新大会在人民大会堂召开。胡锦涛在大会上讲话指出,必须把创新驱动发展作为面向未来的一项重大战略,一以贯之、长期坚持,推动科技实力、经济实力、综合国力实现新的重大跨越。',},
+                    {id:147,category:2,name:'《关于新时代进一步加强科学技术普及工作的意见》',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2022年9月4日',place:'',oldname:'',people:'中共中央办公厅、国务院办公厅',desc:'2022年9月4日,中共中央办公厅、国务院办公厅印发《关于新时代进一步加强科学技术普及工作的意见》,对新时代加强科普工作作出系统部署,提出具体要求。',},
+                    {id:148,category:2,name:'一二·九运动',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1935年12月9日',place:'天安门广场',oldname:'承天门',people:'学生',desc:'1935年12月9日,北平大中学生数千人举行了抗日救国示威游行,反对华北自治,反抗日本帝国主义,要求保全中国领土的完整,掀起全国抗日救国新高潮。',},
+                    {id:149,category:2,name:'解放军北平入城式',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1949年2月3日',place:'正阳门',oldname:'丽正门,前门、前门楼子、大前门',people:'中国人民解放军',desc:'1949年2月3日,中国人民解放军举行北平入城仪式。民主党派人士、名流学者和北平市民、学生、工人从四面八方汇聚在前门广场欢迎人民解放军进城。',},
+                    {id:150,category:2,name:'中国人民反对美国侵略台湾朝鲜运动委员会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1950年7月10日',place:'',oldname:'',people:'中国共产党',desc:'1950年7月10日,中国人民反对美国侵略台湾朝鲜运动委员会在北京成立,并在14日发出《关于举行“反对美国侵略台湾朝鲜运动周”的通知》。抗美援朝运动开始波及全国,形成第一个高潮。',},
+                    {id:151,category:2,name:'纪念中国人民抗日战争暨世界反法西斯战争胜利70周年大会和阅兵仪式',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2015年9月3日',place:'天安门广场',oldname:'承天门',people:'中国共产党、习近平',desc:'2015年9月3日,纪念中国人民抗日战争暨世界反法西斯战争胜利70周年大会和阅兵仪式在天安门广场举行。习近平检阅受阅部队并发表讲话,宣布中国将裁减军队员额30万。',},
+                    {id:152,category:2,name:'纪念中国人民志愿军抗美援朝出国作战70周年大会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2020年10月23日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'中国共产党、习近平',desc:'2020年10月23日,纪念中国人民志愿军抗美援朝出国作战70周年大会在人民大会堂召开。习近平在大会上讲话指出,在波澜壮阔的抗美援朝战争中,英雄的中国人民志愿军锻造了伟大抗美援朝精神。',},
+                    {id:153,category:2,name:'国家奥林匹克体育中心正式竣工',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1986年7月',place:'国家奥林匹克体育中⼼',oldname:'',people:'',desc:'1986年7月,国家奥林匹克体育中心正式竣工。',},
+                    {id:154,category:2,name:'国家奥林匹克体育中心正式投入使用',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1990年',place:'国家奥林匹克体育中⼼',oldname:'',people:'',desc:'1990年,国家奥林匹克体育中心正式投入使用。',},
+                    {id:155,category:2,name:'国家奥林匹克体育中心奥运会改造工程正式开工',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2006年4月1日',place:'国家奥林匹克体育中⼼',oldname:'',people:'',desc:'2006年4月1日,国家奥林匹克体育中心奥运会改造工程正式开工。',},
+                    {id:156,category:2,name:'国家奥林匹克体育中心体育场改扩建工程正式完工',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2007年9月11日',place:'国家奥林匹克体育中⼼',oldname:'',people:'',desc:'2007年09月11日,国家奥林匹克体育中心体育场改扩建工程正式完工。',},
+                    {id:157,category:2,name:'提出申办2008年奥运会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1998年',place:'',oldname:'',people:'',desc:'1998年,北京提出申办2008年第29届奥林匹克运动会。',},
+                    {id:158,category:2,name:'实施《北京奥运行动规划》',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2002年7月13日',place:'',oldname:'',people:'',desc:'2002年7月13日,北京市政府和北京奥组委共同制定并正式公布实施《北京奥运行动规划》,提出了“新北京、新奥运”两大主题和“绿色奥运,科技奥运,人文奥运”三大理念。',},
+                    {id:159,category:2,name:'国家体育场和国家游泳中心开工奠基',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2003年12月24日',place:'国家体育场',oldname:'',people:'',desc:'2003年12月24日,国家体育场和国家游泳中心开工奠基,拉开了2008年北京奥运会体育场馆建设的序幕。',},
+                    {id:160,category:2,name:'第29届夏季奥林匹克运动会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2008年8月8日至24日',place:'国家奥林匹克体育中⼼',oldname:'',people:'',desc:'2008年8月8日至24日,北京举办第29届夏季奥林匹克运动会。',},
+                    {id:161,category:2,name:'北京2022年冬奥会主题口号公布',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2021年9月17日',place:'',oldname:'',people:'',desc:'2021年9月17日,北京2022年冬奥会主题口号“一起向未来（Together for a Shared Future）”正式公布。',},
+                    {id:162,category:2,name:'第24届冬季奥林匹克运动会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2022年2月4日至20日',place:'国家体育场',oldname:'',people:'',desc:'2022年2月4日至20日,北京举办第24届冬季奥林匹克运动会。',},
+                    {id:163,category:2,name:'反饥饿反内战反迫害运动',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1947年5-6月',place:'',oldname:'',people:'学生',desc:'1947年5-6月,“国统区”爆发的学生民主爱国运动。15日,南京中央大学等校3,000余人前往教育部请愿,要求解决“饥饿”问题,并得到北平学生的响应。16日,北大院系联合会首先提出“反饥饿、反内战”口号。',},
+                    {id:164,category:2,name:'庆祝中华人民共和国中央人民政府成立典礼',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1949年10月1日',place:'天安门广场',oldname:'承天门',people:'中国共产党',desc:'1949年10月1日,庆祝中华人民共和国中央人民政府成立典礼在首都北京隆重举行,史称“开国大典”。',},
+                    {id:165,category:2,name:'国庆阅兵',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'',place:'',oldname:'',people:'中国共产党',desc:'1950年10月1日、1955年10月1日、1957年10月1日等都举行过阅兵仪式。',},
+                    {id:166,category:2,name:'天安门事件',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1976年3月下旬到4月5日',place:'天安门广场',oldname:'承天门',people:'周恩来、邓小平',desc:'1976年3月下旬到4月5日,在北京天安门广场发生的人民群众大规模悼念周恩来、反对“四人帮”、支持邓小平的事件,被称作天安门事件。',},
+                    {id:167,category:2,name:'毛泽东追悼大会',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1977年9月18日',place:'天安门广场',oldname:'承天门',people:'毛泽东',desc:'1977年9月18日,毛泽东追悼大会在北京天安门举行。大批工人、农民、学生,在车间、农村、学校同时肃立致哀。神户、横槟、千叶、扎幌、京都、大阪、爱知、长崎、福冈、宫城等大城市也都举行了追悼大会。',},
+                    {id:168,category:2,name:'庆祝中华人民共和国成立35周年的阅兵仪式和群众游行',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1984年10月1日',place:'',oldname:'',people:'中国共产党、邓小平',desc:'1984年10月1日,首都举行庆祝中华人民共和国成立35周年的阅兵仪式和群众游行。邓小平在天安门城楼检阅受阅部队。',},
+                    {id:169,category:2,name:'八宝山革命公墓',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1996年12月起',place:'',oldname:'',people:'北京市政府、中宣部',desc:'这里安葬着众多的英烈。国家领导、开国将领、革命烈士。1996年12月,八宝山革命公墓正式被市政府命名为青少年爱国主义教育基地。2007年5月,八宝山革命公墓被中宣部列为第四批全国爱国主义教育示范基地。',},
+                    {id:170,category:2,name:'庆祝中华人民共和国成立50周年的阅兵仪式和群众游行',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1999年10月1日',place:'',oldname:'',people:'中国共产党、江泽民',desc:'1999年10月1日,首都举行庆祝中华人民共和国成立50周年的阅兵仪式和群众游行。江泽民在天安门城楼检阅受阅部队。',},
+                    {id:171,category:2,name:'庆祝中华人民共和国成立60周年大会、阅兵仪式和群众游行',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2009年10月1日',place:'',oldname:'',people:'中国共产党、胡锦涛',desc:'2009年10月1日,首都各界庆祝中华人民共和国成立60周年大会、阅兵仪式和群众游行举行。胡锦涛在天安门城楼检阅受阅部队并发表讲话。',},
+                    {id:172,category:2,name:'李大钊烈士陵园',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2021年6月1日',place:'',oldname:'',people:'',desc:'万安公墓,北京最早的现代化公墓,也是一个著名的烈士陵园。在万安公墓中,有著名的李大钊烈士陵园。2021年6月1日,李大钊烈士陵园全面对外开放,吸引了大量人群前往祭扫吊唁。',},
+                    {id:173,category:2,name:'“群艺社”演艺“解放新戏”',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1949年4月1日',place:'',oldname:'',people:'曹宝禄、魏喜奎、顾荣甫、老舍、马少波',desc:'1949年4月,北京曲艺艺人曹宝禄、魏喜奎、顾荣甫等组织“群艺社”,在前门箭楼游艺厅演唱曲艺。',},
+                    {id:174,category:2,name:'京剧对外交流',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'新中国成立后',place:'',oldname:'',people:'文化部、外交部、梅兰芳',desc:'新中国成立后,中国派遣京剧团赴世界各地访问演出,其中梅兰芳先后于1952年、1957年和1960年赴苏联访问,1956年第三次访问日本,为中国传统文化在海外赢得了巨大荣誉。',},
+                    {id:175,category:2,name:'举办演员培训班',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1973年',place:'',oldname:'',people:'',desc:'“文化大革命”期间,北京曲剧也处于停演状态。1973年,为培养曲艺、曲剧的后继人才,举办了演员培训班,培养了一批演员。',},
+                    {id:176,category:2,name:'老舍纪念馆 ',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1984年5月12日',place:'',oldname:'',people:'',desc:'老舍纪念馆位于北京市东城区灯市口西街丰富胡同19号院,原为老舍故居,即“丹柿小院”,是一座北京旧式小院,小小的黑门坐西朝东,进门为一小院,只有两间南房,向西是一座三合院。',},
+                    {id:177,category:2,name:'梅兰芳纪念馆',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1987年10月起',place:'',oldname:'',people:'',desc:'梅兰芳纪念馆成立于1987年10月,位于北京市西城区护国寺街9号,是一座典型的北京四合院。梅兰芳纪念馆内有珍贵藏品32421件,多为梅兰芳的亲人捐献,包括剧本、图书、照片、剧单、字画、信件、实物等。',},
+                    {id:178,category:2,name:'京剧被列入第一批国家级非物质文化遗产名录',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2006年5月',place:'',oldname:'',people:'',desc:'京剧舞台艺术在文学、音乐、锣鼓、脸谱等各个方面,通过无数艺人的长期舞台实践,构成了一套互相制约、相得益彰的格律化和规范化的程式。2006年5月,京剧被国务院批准列入第一批国家级非物质文化遗产名录。',},
+                    {id:179,category:2,name:'北京曲剧被列入北京市第五批市级非物质文化遗产代表性项目名录',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2021年9月29日',place:'',oldname:'',people:'',desc:'2021年9月29日,北京曲剧被列入北京市第五批市级非物质文化遗产代表性项目名录。',},
+                    {id:180,category:2,name:'北京电视台宣传北京风情画派',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'1977年后',place:'',oldname:'',people:'北京电视台、崔铁成',desc:'1997年,参加中国国际艺术博览会,展出近年创作的老北京风情画作品,得到海内外各界的肯定和赞扬。北京电视台"北京时间"栏目拍摄并播出专题片《北京胡同画家--崔铁成》。',},
+                    {id:181,category:2,name:'“燕京八绝”入选国家级非物质文化遗产名录',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2006年-2008年',place:'',oldname:'',people:'',desc:'“燕京八绝”是对北京的景泰蓝、玉雕、牙雕、雕漆、金漆镶嵌、花丝镶嵌、宫毯、京绣八大工艺门类的称呼。“燕京八绝”充分汲取各地民间工艺精华,在清代达到了传统工艺高峰,形成了“京作”宫廷艺术特色。',},
+                    {id:182,category:2,name:'燕京八绝冰雪原创手表',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2021年',place:'',oldname:'',people:'博物馆文创团队',desc:'2021年,博物馆文创团队围绕“冰雪文化”进行了设计和工艺融合尝试,经过多轮努力,金漆镶嵌平磨螺钿创新工艺腕表最终面世,它凝聚了很多匠心与创新。',},
+                    {id:183,category:2,name:'北京绢人诞生',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'20世纪50年代中期',place:'',oldname:'',people:'',desc:'北京绢人的诞生,是在新中国成立后的50年代中期,从质料上看,北京绢人,从头到脚都采用了中国丝绸、绢纱,人物的脸型、服饰和动作表情,充分体现出中国风貌。因为做成人形的主要原料是彩绢,所以被人们称做“北京绢人”。',},
+                    {id:184,category:2,name:'北京绢人被列入国家级非物质文化遗产代表性项目名录扩展项目名录',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2021年5月24日',place:'',oldname:'',people:'国务院',desc:'2021年5月24日,北京市东城区申报的北京绢人经国务院批准列入国家级非物质文化遗产代表性项目名录扩展项目名录。',},
+                    {id:185,category:2,name:'举办“太璞如琢——崔如琢艺术故宫大展”',symbolSize:10,ignore:true,itemStyle: {normal: {color:"#A13425",}},time:'2016年2月25日',place:'人民大会堂',oldname:'万人大会堂、人大会堂、人民宫',people:'故宫、崔如琢',desc:'2016年2月25日下午,在人民大会堂由故宫博物院主办“太璞如琢——崔如琢艺术故宫大展”。',},
+                    ],
+
+
+
+                    links: [{source:1,target:0,},
+                    {source:2,target:0,},
+                    {source:3,target:0,},
+                    {source:4,target:0,},
+                    {source:5,target:2,},
+                    {source:6,target:2,},
+                    {source:7,target:3,},
+                    {source:8,target:3,},
+                    {source:9,target:4,},
+                    {source:10,target:1,},
+                    {source:11,target:3,},
+                    {source:12,target:4,},
+                    {source:13,target:2,},
+                    {source:14,target:3,},
+                    {source:15,target:4,},
+                    {source:16,target:1,},
+                    {source:17,target:1,},
+                    {source:18,target:2,},
+                    {source:19,target:3,},
+                    {source:20,target:3,},
+                    {source:21,target:3,},
+                    {source:22,target:4,},
+                    {source:23,target:4,},
+                    {source:24,target:4,},
+                    {source:25,target:4,},
+                    {source:26,target:1,},
+                    {source:27,target:3,},
+                    {source:28,target:1,},
+                    {source:29,target:2,},
+                    {source:30,target:2,},
+                    {source:31,target:3,},
+                    {source:32,target:3,},
+                    {source:33,target:2,},
+                    {source:34,target:2,},
+                    {source:35,target:3,},
+                    {source:36,target:1,},
+                    {source:37,target:1,},
+                    {source:38,target:2,},
+                    {source:39,target:2,},
+                    {source:40,target:3,},
+                    {source:41,target:4,},
+                    {source:42,target:4,},
+                    {source:43,target:4,},
+                    {source:44,target:4,},
+                    {source:45,target:1,},
+                    {source:46,target:1,},
+                    {source:47,target:2,},
+                    {source:48,target:3,},
+                    {source:49,target:1,},
+                    {source:50,target:1,},
+                    {source:51,target:1,},
+                    {source:52,target:2,},
+                    {source:53,target:3,},
+                    {source:54,target:3,},
+                    {source:55,target:4,},
+                    {source:56,target:4,},
+                    {source:57,target:1,},
+                    {source:58,target:2,},
+                    {source:59,target:3,},
+                    {source:60,target:4,},
+                    {source:61,target:2,},
+                    {source:62,target:2,},
+                    {source:63,target:1,},
+                    {source:64,target:3,},
+                    {source:65,target:3,},
+                    {source:66,target:2,},
+                    {source:67,target:3,},
+                    {source:68,target:3,},
+                    {source:69,target:3,},
+                    {source:70,target:3,},
+                    {source:71,target:3,},
+                    {source:72,target:3,},
+                    {source:73,target:3,},
+                    {source:74,target:3,},
+                    {source:75,target:3,},
+                    {source:76,target:3,},
+                    {source:77,target:3,},
+                    {source:78,target:3,},
+                    {source:79,target:3,},
+                    {source:80,target:3,},
+                    {source:81,target:3,},
+                    {source:82,target:3,},
+                    {source:83,target:3,},
+                    {source:84,target:4,},
+                    {source:85,target:3,},
+                    {source:86,target:1,},
+                    {source:87,target:1,},
+                    {source:88,target:3,},
+                    {source:89,target:3,},
+                    {source:90,target:3,},
+                    {source:91,target:3,},
+                    {source:92,target:2,},
+                    {source:93,target:3,},
+                    {source:94,target:3,},
+                    {source:95,target:3,},
+                    {source:96,target:4,},
+                    {source:97,target:2,},
+                    {source:98,target:2,},
+                    {source:99,target:2,},
+                    {source:100,target:3,},
+                    {source:101,target:4,},
+                    {source:102,target:4,},
+                    {source:103,target:2,},
+                    {source:104,target:2,},
+                    {source:105,target:3,},
+                    {source:106,target:3,},
+                    {source:107,target:3,},
+                    {source:108,target:3,},
+                    {source:109,target:3,},
+                    {source:110,target:3,},
+                    {source:111,target:3,},
+                    {source:112,target:3,},
+                    {source:113,target:4,},
+                    {source:114,target:4,},
+                    {source:115,target:4,},
+                    {source:116,target:4,},
+                    {source:117,target:2,},
+                    {source:118,target:2,},
+                    {source:119,target:2,},
+                    {source:120,target:2,},
+                    {source:124,target:2,},
+                    {source:121,target:4,},
+                    {source:122,target:4,},
+                    {source:123,target:4,},
+                    {source:125,target:2,},
+                    {source:126,target:2,},
+                    {source:127,target:2,},
+                    {source:128,target:2,},
+                    {source:129,target:4,},
+                    {source:130,target:4,},
+                    {source:131,target:1,},
+                    {source:132,target:2,},
+                    {source:133,target:2,},
+                    {source:134,target:3,},
+                    {source:135,target:3,},
+                    {source:136,target:3,},
+                    {source:137,target:3,},
+                    {source:138,target:4,},
+                    {source:139,target:4,},
+                    {source:140,target:4,},
+                    {source:141,target:4,},
+                    {source:142,target:2,},
+                    {source:143,target:2,},
+                    {source:144,target:2,},
+                    {source:145,target:3,},
+                    {source:146,target:3,},
+                    {source:147,target:4,},
+                    {source:148,target:1,},
+                    {source:149,target:1,},
+                    {source:150,target:2,},
+                    {source:151,target:3,},
+                    {source:152,target:4,},
+                    {source:153,target:3,},
+                    {source:154,target:3,},
+                    {source:155,target:3,},
+                    {source:156,target:3,},
+                    {source:157,target:3,},
+                    {source:158,target:3,},
+                    {source:159,target:3,},
+                    {source:160,target:3,},
+                    {source:161,target:4,},
+                    {source:162,target:4,},
+                    {source:163,target:1,},
+                    {source:164,target:2,},
+                    {source:165,target:2,},
+                    {source:166,target:2,},
+                    {source:167,target:2,},
+                    {source:168,target:3,},
+                    {source:169,target:3,},
+                    {source:170,target:3,},
+                    {source:171,target:3,},
+                    {source:172,target:4,},
+                    {source:173,target:1,},
+                    {source:174,target:2,},
+                    {source:175,target:3,},
+                    {source:176,target:3,},
+                    {source:177,target:3,},
+                    {source:178,target:3,},
+                    {source:179,target:3,},
+                    {source:180,target:3,},
+                    {source:181,target:3,},
+                    {source:182,target:4,},
+                    {source:183,target:2,},
+                    {source:184,target:4,},
+                    {source:185,target:4,},
+                        ]
+                }]
+            };
+            myChart.setOption(option);
+            var ecConfig = require('echarts/config');
+
+            function openOrFold(param) {
+                var option = myChart.getOption();
+                var nodesOption = option.series[0].nodes;
+                var linksOption = option.series[0].links;
+                var data = param.data;
+                var linksNodes = [];
+
+                var categoryLength = option.series[0].categories.length;
+
+                if (data != null && data != undefined) {
+                    if (data.flag) {
+
+                        for (var m in linksOption) {
+
+                            if (linksOption[m].target == data.id) {
+                                linksNodes.push(linksOption[m].source);
+                            }
+                        }
+                        if (linksNodes != null && linksNodes != undefined) {
+                            for (var p in linksNodes) {
+                                nodesOption[linksNodes[p]].ignore = false;
+                                nodesOption[linksNodes[p]].flag = true;
+                            }
+                        }
+                        nodesOption[data.id].flag = false;
+
+                        console.log(data)
+                        
+                        $('#name').html(data.name)
+                        $('#time').html(data.time)
+                        $('#place').html(data.place)
+                        $('#oldname').html(data.oldname)
+                        $('#people').html(data.people)
+                        $('#desc').html(data.desc)
+
+
+
+                        myChart.setOption(option);
+                    } else {
+
+                        for (var m in linksOption) {
+
+                            if (linksOption[m].target == data.id) {
+                                linksNodes.push(linksOption[m].source);
+                            }
+                            if (linksNodes != null && linksNodes != undefined) {
+                                for (var n in linksNodes) {
+                                    if (linksOption[m].target == linksNodes[n]) {
+                                        linksNodes.push(linksOption[m].source);
+                                    }
+                                }
+                            }
+                        }
+                        if (linksNodes != null && linksNodes != undefined) {
+                            for (var p in linksNodes) {
+                                nodesOption[linksNodes[p]].ignore = true;
+                                nodesOption[linksNodes[p]].flag = true;
+                            }
+                        }
+                        nodesOption[data.id].flag = true;
+                        myChart.setOption(option);
+                    }
+                }
+            }
+            myChart.on(ecConfig.EVENT.CLICK, openOrFold);
+        });
+    </script>
+
+</body>
+
+</html>
